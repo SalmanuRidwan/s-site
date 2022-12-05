@@ -1,0 +1,1 @@
+web: gunicorn textile.wsgi --log-file -

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
-from .models import Item, Order, OrderItem, BillingAddress
+from .models import Shoe, Order, OrderShoe
 from django.utils import timezone
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -39,8 +39,8 @@ class PaymentView(View):
 
 @login_required
 def add_to_cart(request, slug):
-    item = get_object_or_404(Item, slug=slug)
-    order_item, created = OrderItem.objects.get_or_create(
+    item = get_object_or_404(Shoe, slug=slug)
+    order_item, created = OrderShoe.objects.get_or_create(
         item=item,
         user=request.user,
         ordered=False
@@ -68,7 +68,7 @@ def add_to_cart(request, slug):
 
 @login_required
 def remove_from_cart(request, slug):
-    item = get_object_or_404(Item, slug=slug)
+    item = get_object_or_404(Shoe, slug=slug)
     order_qs = Order.objects.filter(
         user=request.user,
         ordered=False
@@ -76,7 +76,7 @@ def remove_from_cart(request, slug):
     if order_qs.exists():
         order = order_qs[0]
         if order.items.filter(item__slug=item.slug).exists():
-            order_item = OrderItem.objects.filter(
+            order_item = OrderShoe.objects.filter(
                 item=item,
                 user=request.user,
                 ordered=False
@@ -95,7 +95,7 @@ def remove_from_cart(request, slug):
 
 @login_required
 def remove_single_item_from_cart(request, slug):
-    item = get_object_or_404(Item, slug=slug)
+    item = get_object_or_404(Shoe, slug=slug)
     order_qs = Order.objects.filter(
         user=request.user,
         ordered=False
@@ -103,7 +103,7 @@ def remove_single_item_from_cart(request, slug):
     if order_qs.exists():
         order = order_qs[0]
         if order.items.filter(item__slug=item.slug).exists():
-            order_item = OrderItem.objects.filter(
+            order_item = OrderShoe.objects.filter(
                 item=item,
                 user=request.user,
                 ordered=False
