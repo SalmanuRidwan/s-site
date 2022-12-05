@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class HomeView(ListView):
-    model = Item
+    model = Shoe
     template_name = 'home.html'
     context_object_name = 'items'
     paginate_by = 10
@@ -17,7 +17,7 @@ class HomeView(ListView):
 
 
 class ItemDetailView(DetailView):
-    model = Item
+    model = Shoe
     template_name = 'product.html'
     context_object_name = 'item'
 
