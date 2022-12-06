@@ -56,7 +56,7 @@ class OrderShoe(models.Model):
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return f"{self.quantity} of {self.shoe.title}"
+        return f"{self.quantity} of {self.shoe.name}"
     
     def get_total_item_price(self):
         return self.quantity * self.shoe.price 
