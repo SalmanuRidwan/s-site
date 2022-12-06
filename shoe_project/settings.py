@@ -148,6 +148,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-5ef0.up.railway.app/',
     'https://*.127.0.0.1'
 ]
  
