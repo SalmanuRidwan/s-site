@@ -14,7 +14,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="{{ item.image.url }}" class="img-fluid" alt="">
+          <img src="{{ shoe.image.url }}" class="img-fluid" alt="">
 
         </div>
         <!--Grid column-->
@@ -27,24 +27,24 @@
 
             <div class="mb-3">
               <a href="">
-                <span class="badge purple mr-1">{{ item.get_category_display }}</span>
+                <span class="badge purple mr-1">{{ shoe.get_category_display }}</span>
               </a>
             </div>
 
             <p class="lead">
-                {% if item.discount_price %}
+                {% if shoe.discount_price %}
                 <span class="mr-1">
-                    <del>${{ item.price }}</del>
+                    <del>${{ shoe.price }}</del>
                 </span>
-                <span>${{ item.discount_price }}</span>
+                <span>${{ shoe.discount_price }}</span>
                 {% else %}
-                    {{ item.price }}
+                    {{ shoe.price }}
                 {% endif %}
             </p>
 
             <p class="lead font-weight-bold">Description</p>
 
-            <p>{{ item.description }}</p>
+            <p>{{ shoe.description }}</p>
 
             {% comment %} <form class="d-flex justify-content-left">
               <!-- Default input -->
@@ -54,10 +54,10 @@
               </button>
 
             </form> {% endcomment %}
-            <a href="{{ item.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">Add to cart
+            <a href="{{ shoe.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
             </a>
-            <a href="{{ item.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">Remove from cart
+            <a href="{{ shoe.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">Remove from cart
             </a>
 
           </div>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% block title %}Shoe Website | Home Page{% endblock title %}
+{% block title %}E-commerce Home Page{% endblock title %}
 
 
 {% block content %}
@@ -9,52 +9,41 @@
   <main>
     <div class="container">
 
-      <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
-        <span class="navbar-brand">Categories:</span>
+      <section class="mt-5 text-center mb-4">
+        <div class=" mt-5 row wow fadeIn">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-
-      </nav>
-
-      <section class="text-center mb-4">
-        <div class="row wow fadeIn">
-
-        {% for item in items %}
+        {% for shoe in shoes %}
           <div class="col-lg-3 col-md-6 mb-4">
 
             <div class="card">
 
               <div class="view overlay">
-                <img src="{{ item.image.url }}" class="card-img-top"
+                <img src="{{ shoe.image.url }}" class="card-img-top"
                   alt="">
-                <a href="{{ item.get_absolute_url }}">
+                <a href="{{ shoe.get_absolute_url }}">
                   <div class="mask rgba-white-slight"></div>
                 </a>
               </div>
 
               <div class="card-body text-center">
                 <a href="" class="grey-text">
-                  <h5>{{ item.get_category_display }}</h5>
+                  {% comment %} <h5>{{ shoe.get_category_display }}</h5> {% endcomment %}
                 </a>
                 <h5>
                   <strong>
-                    <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
-                      <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>
+                    <a href="{{ shoe.get_absolute_url }}" class="dark-grey-text">{{ shoe.title }}
+                      <span class="badge badge-pill {{ shoe.get_label_display }}-color">NEW</span>
                     </a>
                   </strong>
                 </h5>
 
                 <h4 class="font-weight-bold blue-text">
                   <strong>$
-                    {% if item.discount_price %}
-                        {{ item.discount_price }}
+                    {% if shoe.discount_price %}
+                        {{ shoe.discount_price }}
                     {% else %}
-                        {{ item.price }}
+                        {{ shoe.price }}
                     {% endif %}
                   </strong>
                 </h4>

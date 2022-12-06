@@ -1,0 +1,75 @@
+{% extends 'base.html' %} {% load static %} {% block title %}E-commerce Home Page{% endblock title %} {% block content %}
+
+<main>
+    <div class="container">
+        <div class="table-responsive text-nowrap">
+            <h2>Order Summary</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Shoe Title</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total Shoe Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order_item in orders.shoes.all %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ order_item.shoe.title }}</td>
+                        <td>{{ order_item.shoe.price }}</td>
+                        <td>
+                            <a href="{% url 'main:remove-single-item-from-cart' order_item.shoe.slug %}">
+                                <i class="fa fa-minus mr-2"></i>
+                            </a>
+                                {{ order_item.quantity }}
+                            <a href="{% url 'main:add-to-cart' order_item.shoe.slug %}">
+                                <i class="ml-2 fa fa-plus"></i>
+                            </a>
+                        </td>
+                        <td>
+                            {% if order_item.shoe.discount_price %}
+                                ${{ order_item.get_total_discount_item_price }}
+                                <span class="badge badge-primary">Saving ${{ order_item.get_amount_saved }}</span>
+                            {% else %}
+                                ${{ order_item.get_total_item_price }}
+                            {% endif %}
+                            <a style="color:red;" class="float-right" href="{% url 'main:remove-from-cart' order_item.shoe.slug %}">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">Your cart is empty</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <a class="btn btn-primary float-right" href="/">Continue Shopping</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% if orders.get_total %}
+                    <tr>
+                        <td colspan="4"><b>Order Total</b></td>
+                        <td colspan="1"><b>${{ orders.get_total }}</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <a class="btn btn-warning float-right ml-3" href="/checkout/">Proceed To Checkout</a>
+                            <a class="btn btn-primary float-right" href="/">Continue Shopping</a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+{% include 'footer.html' %} {% include 'scripts.html' %} {% endblock content %}
+</body>
+
+</html>

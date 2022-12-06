@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Success Payment{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="pt-5 w-50 h-25 lead">
+        <h2>Order Complete</h2>
+        <p>
+            Dear {{ request.user.username }},<br>
+            <b>CONGRATULATIONS,</b> you successfully purchased a property
+        </p>
+    </div>
+</div>
+{% include "footer.html" %}
+{% endblock content %}

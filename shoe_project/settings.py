@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users',
     'whitenoise.runserver_nostatic',
     'crispy_forms',
+    
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'users.CustomUser'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.127.0.0.1'
+]
+ 
