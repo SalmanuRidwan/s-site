@@ -1,1 +1,1 @@
-web: gunicorn textile.wsgi --log-file -
+web: gunicorn shoe_project.wsgi --log-file -
